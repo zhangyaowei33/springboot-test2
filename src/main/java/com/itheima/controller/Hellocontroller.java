@@ -1,10 +1,14 @@
 package com.itheima.controller;
 
+import com.itheima.domain.User;
+import com.itheima.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -54,5 +58,13 @@ public class Hellocontroller {
         System.out.println(person);
         return "测试ConfigurationProperties";
 
+    }
+
+    @Autowired
+    private UserMapper userMapper;
+    @RequestMapping("/class")
+    public List<User> clas(){
+        List<User> list = userMapper.findall();
+        return list;
     }
 }
